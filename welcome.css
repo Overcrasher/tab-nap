@@ -1,0 +1,11 @@
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.steps li { display: flex; gap: 12px; align-items: flex-start; }
+.n { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-strong); font-weight: 700; font-size: 14px; }
+.know { margin: 0; color: var(--fg); }
+.actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+button.cta { font: inherit; font-weight: 700; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-fg); border-radius: 10px; padding: 9px 18px; transition: background .15s; }
+button.cta:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+button.cta.quiet { background: transparent; color: var(--accent); }
+button.cta.quiet:hover { background: var(--accent-soft); }
+.pin { margin-top: 12px; }
+#protect-status { margin: 10px 0 0; font-weight: 600; color: var(--accent); }

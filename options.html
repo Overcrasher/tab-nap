@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tab Nap options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header class="page-head">
+      <svg class="mark" viewBox="0 0 32 32" width="48" height="48" aria-hidden="true">
+        <defs><linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4338CA"/><stop offset="1" stop-color="#312E81"/></linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="url(#mk)"/>
+        <path d="M19.500 4.500a8 8 0 1 0 6.500 12.200A6.800 6.800 0 0 1 19.500 4.500z" fill="#FDE68A"/>
+        <path d="M5.500 20.500a2 2 0 0 1 2-2h4.200l1.800 1.800h11a2 2 0 0 1 2 2V24a2 2 0 0 1-2 2h-17a2 2 0 0 1-2-2z" fill="#A5B4FC"/>
+      </svg>
+      <div>
+        <h1>Tab Nap</h1>
+        <p class="tagline">Idle tabs sleep. Memory comes back.</p>
+      </div>
+      <span id="saved" class="saved" role="status" aria-live="polite">Saved ✓</span>
+    </header>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.500 2M9 2.500h6"/></svg>
+        <div><h2>Nap tabs after</h2><p class="hint">How long a tab must sit unused before it goes to sleep.</p></div>
+      </div>
+      <div class="segmented" role="radiogroup" aria-label="Idle time before napping">
+        <label><input type="radio" name="threshold" value="5"><span>5 min</span></label>
+        <label><input type="radio" name="threshold" value="15"><span>15 min</span></label>
+        <label><input type="radio" name="threshold" value="30"><span>30 min</span></label>
+        <label><input type="radio" name="threshold" value="60"><span>1 hour</span></label>
+        <label><input type="radio" name="threshold" value="120"><span>2 hours</span></label>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5M8 3h8l-1 7 3 4H6l3-4-1-7z"/></svg>
+        <div><h2>Tabs that never nap</h2></div>
+      </div>
+      <label class="row-switch">
+        <input id="protectPinned" type="checkbox" role="switch">
+        <span class="track" aria-hidden="true"></span>
+        <span class="rs-text">Protect pinned tabs</span>
+      </label>
+      <hr class="sep">
+      <label class="row-switch static">
+        <input id="audible" type="checkbox" role="switch" checked disabled>
+        <span class="track" aria-hidden="true"></span>
+        <span class="rs-text">Protect tabs that are playing sound<span class="rs-sub">Always on. Tab Nap also never touches the tab you are looking at, tabs that are still loading, and browser pages.</span></span>
+      </label>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.500l4.500 4.500L20 6.500"/></svg>
+        <div><h2>Never-nap sites</h2><p class="hint">Tabs on these sites (and their subdomains) are always left awake.</p></div>
+      </div>
+      <form id="wl-form" class="wl-add" autocomplete="off">
+        <input id="wl-input" type="text" inputmode="url" placeholder="example.com" aria-label="Domain to never nap" maxlength="253" spellcheck="false">
+        <button id="wl-add" class="btn" type="submit">Add</button>
+      </form>
+      <p id="wl-err" class="err" role="alert"></p>
+      <ul id="wl-list" class="chips" aria-label="Never-nap sites"></ul>
+      <p id="wl-empty" class="hint">No sites yet. You can also right-click any page and choose "Never nap this site".</p>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4zM8 11h.01M12 11h.01M16 11h.01M8 14h8"/></svg>
+        <div><h2>Unsaved typing protection</h2></div>
+      </div>
+      <label class="row-switch">
+        <input id="protectTyping" type="checkbox" role="switch">
+        <span class="track" aria-hidden="true"></span>
+        <span class="rs-text">Protect tabs with unsaved typing (recommended)<span class="rs-sub">Needs Chrome's permission to run on web pages</span></span>
+      </label>
+      <p id="protect-msg" class="hint" role="status" aria-live="polite"></p>
+      <p class="hint">How it works: when on, a tiny script in each page notices that you typed into a text box and tells Tab Nap "this tab has typing in it". It never reads, stores or sends what you type, and ignores password fields. Such tabs are left awake until the page is reloaded or closed. When off, Tab Nap cannot see forms, so a tab with a half-written message can still be put to sleep. Chrome restores the tab when you return, but typing that was never saved may be lost.</p>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>
+        <div><h2>Memory estimate</h2></div>
+      </div>
+      <label class="field" for="avgMb">Average memory per tab
+        <span class="suffix-input"><input id="avgMb" type="number" min="50" max="500" step="10" value="150"><span class="suffix">MB</span></span>
+      </label>
+      <p class="hint">Used only for the "saved" figure in the popup. It is an estimate: napping tabs times this number. Between 50 and 500.</p>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <div><h2>Pause</h2></div>
+      </div>
+      <label class="row-switch">
+        <input id="pause" type="checkbox" role="switch">
+        <span class="track" aria-hidden="true"></span>
+        <span class="rs-text">Pause napping<span id="pause-sub" class="rs-sub"></span></span>
+      </label>
+    </section>
+
+    <section class="support">
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.300-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.700-7 10-7 10z"/></svg>
+        <div><h2>Support this project</h2></div>
+      </div>
+      <p id="thanks" class="hint thanks" hidden>Thank you for supporting Tab Nap ❤</p>
+      <p class="hint">Built by one developer, no ads, no tracking. Entirely optional.</p>
+      <div id="donate" class="donate-row"></div>
+      <p id="donate-note" class="hint"></p>
+      <p class="hint more">Enjoying Tab Nap? <a id="rate-link" href="#">Rate it in the Chrome Web Store</a></p>
+      <p class="hint more" id="more-line">More from the same developer: <span id="siblings"></span></p>
+    </section>
+  </main>
+  <script src="lib/validate.js"></script>
+  <script src="lib/nap.js"></script>
+  <script src="lib/donation.js"></script>
+  <script src="lib/growth.js"></script>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

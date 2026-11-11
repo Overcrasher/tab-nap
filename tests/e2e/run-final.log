@@ -1,0 +1,281 @@
+== Group 1: Install / manifest / welcome [g1]
+  PASS permissions exactly as shipped  | ['tabs', 'storage', 'alarms', 'contextMenus', 'scripting', 'favicon']
+  PASS optional_host_permissions is <all_urls>
+  PASS no required host permissions
+  PASS only content script is the thanks page
+  PASS version 1.0.0, short_name Tab Nap, bare action title
+  PASS localized store name resolved  | Tab Nap – Tab Suspender & Memory Saver
+  PASS strict CSP
+  PASS welcome page opened on install  | ['chrome-extension://bnchojnfmihckejheaamogingbjefdkk/welcome.html']
+  PASS minute alarm registered  | [{'name': 'tabnap-check', 'periodInMinutes': 1, 'persistAcrossSessions': True, 'scheduledTime': 1794416604659.359}]
+  PASS context menu item exists: nap-now  | Cannot create item with duplicate id nap-now
+  PASS context menu item exists: never-site  | Cannot create item with duplicate id never-site
+  PASS context menu item exists: nap-others  | Cannot create item with duplicate id nap-others
+  PASS welcome: 3 steps + protect button + open settings
+  PASS welcome: name shown
+   (4s)
+== Group 2: NEVER rules [g2]
+  PASS precondition: sound tab reports audible=true
+  PASS precondition: held tab is status loading  | loading
+  PASS precondition: exactly one active tab per window  | [298134125, 298134143]
+  PASS idle ordinary tab is napped
+  PASS napped tab keeps its URL
+  PASS NEVER: pinned tab
+  PASS NEVER: whitelisted domain
+  PASS NEVER: tab with unsaved typing (dirty)
+  PASS NEVER: autoDiscardable=false
+  PASS NEVER: audible tab
+  PASS NEVER: still-loading tab
+  PASS NEVER: chrome:// page
+  PASS NEVER: extension page
+  PASS NEVER: about:blank
+  PASS NEVER: active tab of window 1
+  PASS NEVER: active tab of window 2
+  PASS idle tab in window 2 is napped
+  PASS tab already discarded by someone else is not claimed
+  PASS napped set = exactly the 2 tabs Tab Nap slept  | ['https://example.com/?nap=idle', 'https://example.org/?w2=idle']
+  PASS napCount = 2, tabHours = 2/60  | (2, 0.03333333333333333)
+  PASS discard changes the tab id; napped set holds the NEW id  | (298134130, 298134145)
+  PASS pinned tab napped once 'protect pinned' is off
+  PASS activating a napped tab wakes it
+  PASS woken tab URL intact  | https://example.com/?nap=idle
+  PASS woken tab leaves the napped set  | [298134147]
+  PASS closed napped tab removed from set
+   (25s)
+== Group 3: Minute check / threshold / pause / alarm [g3]
+  PASS real time: fresh tabs not napped  | {'napped': [], 'nappedTotal': 0}
+  PASS 30 min threshold: +10 min not napped
+  PASS 30 min threshold: +29 min not napped
+  PASS 30 min threshold: +31 min napped
+  PASS 5 min threshold: +4 min not napped
+  PASS 5 min threshold: +6 min napped
+  PASS 120 min threshold: +100 min not napped
+  PASS 120 min threshold: +121 min napped
+  PASS paused until turned back on: nothing napped
+  PASS paused for 1 hour: nothing napped
+  PASS pause that has expired: naps again and clears pausedUntil  | 0
+  PASS precondition: 2 tabs napped  | 2
+  PASS real minute alarm fired and added tab-hours  | (0.13333333333333333, 0.16666666666666666)
+  PASS alarm increment = napped tabs / 60 (per alarm)  | (0.033333333333333326, 0.03333333333333333)
+  PASS after waking everything, nothing counts as napping  | {'napped': [], 'nappedTotal': 0}
+   (34s)
+== Group 4: Context menu handlers [g4]
+  PASS Nap this tab now: returns true  | True
+  PASS Nap this tab now: clicked tab asleep, URL kept
+  PASS Nap this tab now: switched to another awake tab first  | ['https://example.com/?m=pin']
+  PASS Nap this tab now: counted
+  PASS Nap this tab now: refused for a pinned tab  | False
+  PASS Nap this tab now: refused when no other awake tab in window  | False
+  PASS Never nap this site: domain whitelisted  | ['example.net']
+  PASS Never nap this site: refused on chrome:// page
+  PASS Never nap this site: no duplicates
+  PASS Nap all other tabs: plain tabs napped (even though fresh)
+  PASS Nap all other tabs: clicked/active tab stays awake
+  PASS Nap all other tabs: pinned stays
+  PASS Nap all other tabs: whitelisted stays
+  PASS Nap all other tabs: tab with unsaved typing stays
+  PASS Nap all other tabs: URLs preserved
+  PASS unknown menu id ignored
+  PASS Object.prototype key ('constructor') ignored
+   (10s)
+== Group 5: Popup [g5]
+  PASS popup empty: 0 tabs, empty state, share hidden  | {'count': '0 tabs', 'memory': '≈ 0 MB saved (estimated)', 'hours': '0', 'naps': '0', 'items': [], 'emptyHidden': False, 'shareHidden': True, 'banner': False, 'rating': False, 'supporter': False, 'pauseChecked': False, 'pauseLeft': ''}
+  PASS popup: no banner / rating / badge on fresh install
+  PASS popup: Currently napping 5 tabs  | 5 tabs
+  PASS popup: memory 5 x 450 MB = 2.3 GB, labelled estimated  | ≈ 2.3 GB saved (estimated)
+  PASS popup: naps counter 5  | 5
+  PASS popup: lifetime tab-hours shown (5/60 -> 0.0)  | 0.0
+  PASS popup: list has 5 entries with titles + hosts  | ['Example Domain', 'Example Domain', 'Example Domain', 'Example Domain', 'Example Domain']
+  PASS popup: favicons use the _favicon URL (pageUrl + size=16)  | chrome-extension://bnchojnfmihckejheaamogingbjefdkk/_favicon/?pageUrl=https%3A%2F%2Fexample.com%2F%3Fp%3D0&size=16
+  PASS popup: favicon images load  | [True, True, True, True, True]
+  PASS popup: share visible after first nap
+  PASS share: button says Copied!  | Copied!
+  PASS share: text format, ends with SHARE_URL  | Tab Nap has put my tabs to sleep for 0.0 tab-hours and saved ≈ 2.3 GB of memory right now. #TabNap https://chromewebstore.google.com/detail/bnchojnfmihckejheaamogingbjefdkk?utm_source=share
+  PASS pause toggle on -> pausedUntil -1  | -1
+  PASS pause message shown
+  PASS pause toggle off -> 0
+  PASS pause 1 hour sets ~now+1h  | 3599494
+  PASS pause 1h: switch on + 'min left' text
+  PASS clicking a list entry activates + reloads that tab (URL intact)  | https://example.com/?p=0
+   (16s)
+== Group 6: Options [g6]
+  PASS options defaults: 30 min, pinned on, 150 MB, empty list  | {'thr': '30', 'pinned': True, 'audible': {'checked': True, 'disabled': True}, 'avg': '150', 'wl': [], 'err': '', 'typing': False, 'pause': False, 'donateNote': 'Donation links not configured yet', 'donateBtns': [], 'sibs': ['Wait 24h', 'Meeting Meter']}
+  PASS options: audible protection shown as always-on info  | {'checked': True, 'disabled': True}
+  PASS options: threshold 60 saved
+  PASS options: threshold 5 saved
+  PASS options: protect pinned off saved
+  PASS options: avg MB 9999 -> 500
+  PASS options: avg MB 3 -> 50
+  PASS options: avg MB 220 -> 220
+  PASS whitelist: URL normalised, deduped, invalid rejected  | (['example.com', 'mail.test.org'], '')
+  PASS whitelist: javascript: rejected with message
+  PASS whitelist: remove works  | ['mail.test.org']
+  PASS options save does not clobber a whitelist changed elsewhere  | ['mail.test.org', 'added.elsewhere.com']
+  PASS options: pause switch -> -1
+  PASS options: pause off -> 0
+  PASS typing protection: asks for optional <all_urls>  | [{"origins":["<all_urls>"]}]
+  PASS typing protection: denied -> switch reverts, setting off
+  PASS typing protection: denied -> no script registered
+  PASS typing protection: explanation present
+  PASS support: no links -> 'not configured', no buttons  | ('Donation links not configured yet', [])
+  PASS support: siblings listed  | ['Wait 24h', 'Meeting Meter']
+  PASS rate link opens reviews URL derived from the extension id  | ['https://chromewebstore.google.com/detail/wait-24h/pkgdjohoemjkejcbfbkfobbbjcpdabme', 'https://consent.google.com/m?continue=https://chromewebstore.google.com/detail/wait-24h/pkgdjohoemjkejcbfbkfobbbjcpdabme&gl=RO&m=0&pc=cws&cm=2&hl=en-US&src=1', 'https://consent.google.com/m?continue=https://chrom
+  PASS sibling link opens its store page  | ['https://chromewebstore.google.com/detail/wait-24h/pkgdjohoemjkejcbfbkfobbbjcpdabme', 'https://consent.google.com/m?continue=https://chromewebstore.google.com/detail/wait-24h/pkgdjohoemjkejcbfbkfobbbjcpdabme&gl=RO&m=0&pc=cws&cm=2&hl=en-US&src=1', 'https://consent.google.com/m?continue=https://chrom
+  PASS options persist across reload  | {'thr': '15', 'pinned': False, 'audible': {'checked': True, 'disabled': True}, 'avg': '220', 'wl': ['mail.test.org', 'added.elsewhere.com'], 'err': '', 'typing': False, 'pause': False, 'donateNote': 'Donation links not configured yet', 'donateBtns': [], 'sibs': ['Wait 24h', 'Meeting Meter']}
+  PASS options: no horizontal overflow at 400px
+  PASS junk storage: popup renders with defaults  | {'count': '0 tabs', 'memory': '≈ 0 MB saved (estimated)', 'hours': '0', 'naps': '0', 'items': [], 'emptyHidden': False, 'shareHidden': True, 'banner': False, 'rating': False, 'supporter': False, 'pauseChecked': False, 'pauseLeft': ''}
+  PASS junk storage: minute check still runs  | {'napped': [298134219, 298134220], 'nappedTotal': 2}
+   (23s)
+== Group 7: Supporter / no-links / rating [g7]
+  PASS thanks page: valid session id sets supporter  | True
+  PASS thanks page: bad shape session id rejected
+  PASS thanks page: wrong prefix session id rejected
+  PASS thanks page: empty session id rejected
+  PASS thanks page without session_id: no flag
+  PASS sibling's thanks page does not set the flag
+  PASS no links configured: banner never shown at 100 tab-hours  | {'count': '0 tabs', 'memory': '≈ 0 MB saved (estimated)', 'hours': '100', 'naps': '60', 'items': [], 'emptyHidden': False, 'shareHidden': False, 'banner': False, 'rating': True, 'supporter': False, 'pauseChecked': False, 'pauseLeft': ''}
+  PASS no links configured: milestone not burned  | None
+  PASS rating card shown after 60 naps
+  PASS rating stored as shown
+  PASS rating card shown only once
+  PASS rating threshold: 49 naps -> not shown
+  PASS rating threshold: 50 naps -> shown
+  PASS Rate it opens the reviews URL
+  PASS rating card hides after click
+  PASS supporter badge shown
+   (50s)
+
+== error-level logs/exceptions in phase main (0):
+== Group 8: Donation banner (links copy) [g8]
+  PASS banner: 99 tab-hours -> none
+  PASS banner: shown at 100 tab-hours  | {'hidden': False, 'text': 'Tab Nap has napped your tabs for 100 tab-hours. Built by one developer, no ads, no tracking. If this helped, a coffee keeps it going.', 'btns': [{'t': '€3', 'c': 'donate'}, {'t': '€5', 'c': 'donate emphasized'}, {'t': '€10', 'c': 'donate'}, {'t': 'Pick your own amount', 'c
+  PASS banner: copy includes the milestone number  | Tab Nap has napped your tabs for 100 tab-hours. Built by one developer, no ads, no tracking. If this helped, a coffee keeps it going.
+  PASS banner: EUR 3 / 5 / 10 + pick your own  | [{'t': '€3', 'c': 'donate'}, {'t': '€5', 'c': 'donate emphasized'}, {'t': '€10', 'c': 'donate'}, {'t': 'Pick your own amount', 'c': 'donate custom'}, {'t': 'Or support monthly (€2/month)', 'c': 'monthly'}]
+  PASS banner: EUR 5 emphasized
+  PASS banner: monthly is a small text link  | [{'t': '€3', 'c': 'donate'}, {'t': '€5', 'c': 'donate emphasized'}, {'t': '€10', 'c': 'donate'}, {'t': 'Pick your own amount', 'c': 'donate custom'}, {'t': 'Or support monthly (€2/month)', 'c': 'monthly'}]
+  PASS banner: ask persisted (asked=[100], lastAskAt)  | {'asked': [100], 'dontAskAgain': False, 'lastAskAt': 1794416716394}
+  PASS banner: button 0 opens https://buy.stripe.com/eur-3
+  PASS banner: button 1 opens https://donate.stripe.com/eur-5
+  PASS banner: button 2 opens https://buy.stripe.com/eur-10
+  PASS banner: custom opens link + quantity hint  | On the next page, choose the quantity (€1 each).
+  PASS banner: monthly opens its link
+  PASS banner: not shown again for the same milestone
+  PASS banner: 1000 reached but < 30 days since last ask -> none
+  PASS banner: 1000 after 31 days -> shown with 1,000  | Tab Nap has napped your tabs for 1,000 tab-hours. Built by one developer, no ads, no tracking. If this helped, a coffee keeps it going.
+  PASS banner: dismiss hides it
+  PASS banner: 10000 milestone copy  | Tab Nap has napped your tabs for 10,000 tab-hours. Built by one developer, no ads, no tracking. If this helped, a coffee keeps it going.
+  PASS Don't ask again stored
+  PASS Don't ask again is permanent
+  PASS supporter: never asked, badge shown
+  PASS banner wins over rating card in the same render  | (False, False)
+  PASS rating card appears on a later open once the banner is spent  | {'hidden': True, 'text': '', 'btns': [], 'note': '', 'rating': True}
+  PASS options support: buttons + monthly link  | ['€3', '€5', '€10', 'Pick your own amount', 'Or support monthly (€2/month)']
+   (50s)
+
+== error-level logs/exceptions in phase links (0):
+== Group 9: Evil donation links [g9]
+  PASS evil links: banner shown (links non-empty)  | {'hidden': False, 'text': 'Tab Nap has napped your tabs for 100 tab-hours. Built by one developer, no ads, no tracking. If this helped, a coffee keeps it going.', 'btns': [{'t': '€3', 'c': 'donate'}, {'t': '€5', 'c': 'donate emphasized'}, {'t': '€10', 'c': 'donate'}, {'t': 'Pick your own amount', 'c
+  PASS evil / look-alike / http links open nothing  | []
+  PASS no quantity hint after refused open
+   (7s)
+
+== error-level logs/exceptions in phase evil (0):
+== Group 10: Typing protection flow [g10]
+  PASS precondition: no typing script registered yet
+  PASS options switch turns on after grant
+  PASS setting protectTyping stored true
+  PASS content script registered (all_frames, document_idle, persistent)  | [{'allFrames': True, 'id': 'tabnap-typing', 'js': ['typing.js'], 'matchOriginAsFallback': False, 'matches': ['<all_urls>'], 'persistAcrossSessions': True, 'runAt': 'document_idle', 'world': 'ISOLATED'}]
+  PASS dirty: tab open BEFORE enabling (injected on enable)  | {2102628618, 2102628619, 2102628620, 2102628615}
+  PASS dirty: text input
+  PASS dirty: textarea
+  PASS dirty: contenteditable
+  PASS not dirty: password typing ignored entirely
+  PASS not dirty: checkbox click
+  PASS not dirty: page-script synthetic (untrusted) input event
+  PASS not dirty: tab nobody typed in
+  PASS dirty tab 'pre' is NOT napped
+  PASS dirty tab 'text' is NOT napped
+  PASS dirty tab 'ta' is NOT napped
+  PASS dirty tab 'ce' is NOT napped
+  PASS clean tab 'pw' IS napped
+  PASS clean tab 'cb' IS napped
+  PASS clean tab 'fake' IS napped
+  PASS clean tab 'none' IS napped
+  PASS clean tab 'nav' IS napped
+  PASS dirty flags survive the check
+  PASS navigation clears the dirty flag  | [2102628618, 2102628619, 2102628620]
+  PASS after navigation the (clean) tab can nap
+  PASS reload clears dirty for that tab  | [2102628619, 2102628620]
+  PASS closing a tab removes its dirty flag  | [2102628620]
+  PASS switch off: setting false
+  PASS switch off: script unregistered
+  PASS switch off: dirty set cleared  | []
+  PASS dirty message rejected while protection is off  | []
+   (28s)
+== Group 11: Security [g11]
+  PASS protection on for security tests
+  PASS content script world exists on the page
+  PASS content script forging 'supporter' -> rejected  | {'ok': False}
+  PASS content script forging 'setProtection on' -> rejected  | {'ok': False}
+  PASS content script forging 'setProtection off' -> rejected  | {'ok': False}
+  PASS content script forging 'unknown type' -> rejected  | {'ok': False}
+  PASS content script forging 'dirty wrong flag' -> rejected  | {'ok': False}
+  PASS content script forging 'dirty false' -> rejected  | {'ok': False}
+  PASS content script forging 'no type' -> rejected  | {'ok': False}
+  PASS content script forging 'type not string' -> rejected  | {'ok': False}
+  PASS content script forging 'proto' -> rejected  | {'ok': False}
+  PASS valid dirty flags the sender tab only (tabId in message ignored)  | ({'ok': True}, [2102628647])
+  PASS content script cannot read chrome.storage.local  | {'blocked': 'Error: Access to storage is not allowed from this context.'}
+  PASS content script cannot read chrome.storage.session  | {'blocked': 'Error: Access to storage is not allowed from this context.'}
+  PASS content script cannot write chrome.storage.local  | blocked
+  PASS extension page: setProtection non-boolean rejected
+  PASS extension page: supporter rejected (only the thanks page may)
+  PASS extension page: unknown type rejected
+  PASS extension page: dirty (no tab sender) rejected
+  PASS web page main world: no runtime.sendMessage, no debug hook, no storage  | {"sendMessage":"undefined","hook":"undefined","storage":"undefined"}
+  PASS thanks-page content script: setProtection rejected  | {'ok': False}
+  PASS thanks-page script: protection still on afterwards
+  PASS supporter from a non-thanks tab rejected even with a valid-looking id
+   (16s)
+== Group 12: Real pages [g12]
+  PASS protection on
+  PASS duckduckgo.com: real page has the box textarea[name=q]
+  PASS duckduckgo.com: text really typed ('tab nap')  | tab nap
+  PASS duckduckgo.com: typing detector flagged the tab  | [2102628658]
+  PASS wikipedia Special:Search: real page has the box input#ooui-php-1
+  PASS wikipedia Special:Search: text really typed ('tab nap')  | tab nap
+  PASS wikipedia Special:Search: typing detector flagged the tab  | [2102628658, 2102628659]
+  PASS bing.com: real page has the box textarea[name=q], input[name=q]
+  PASS bing.com: text really typed ('tab nap')  | tab nap
+  PASS bing.com: typing detector flagged the tab  | [2102628658, 2102628659, 2102628660]
+  PASS real page ddg with typed text is NOT napped  | [('https://duckduckgo.com/', False)]
+  PASS real page wiki with typed text is NOT napped  | [('https://en.wikipedia.org/wiki/Special:Search', False)]
+  PASS real page bing with typed text is NOT napped  | [('https://www.bing.com/', False)]
+  PASS real page without typing IS napped
+  PASS napped real tab keeps https URL + title  | ('https://en.wikipedia.org/wiki/Moon', 'Moon - Wikipedia')
+  PASS real tab wakes on activation, URL intact  | https://en.wikipedia.org/wiki/Moon
+  PASS woken real page content loaded  | Moon - Wikipedia
+  PASS real duckduckgo.com/?q=restore-test napped
+  PASS real duckduckgo.com/?q=restore-test restored with URL intact  | https://duckduckgo.com/?q=restore-test
+  PASS real example.com/?real=1 napped
+  PASS real example.com/?real=1 restored with URL intact  | https://example.com/?real=1
+   (28s)
+
+== error-level logs/exceptions in phase hostperm (2):
+   ('page:www.bing.com/', 'exception', 'Uncaught "ReferenceError: sj_be is not defined\\n    at Object.load (https://r.bing.com/rp/y0FIYYexdcTnfTPn_eeXWjGKdT8.br.js:1:385)\\n    at Object.u [as wireup] (https://www.bing.com/:31:144)\\n    at https://r.bing.com/rp/y0FIYYexdcTnfTPn_eeXWjGKdT8.br.js:1:353\\n    at https://r.bing.com/rp/y0FIYYexdcTnfTPn_e https://r.bing.com/rp/y0FIYYexdcTnfTPn_eeXWjGKdT8.br.js')
+   ('page:www.bing.com/', 'exception', 'Uncaught "ReferenceError: _w is not defined\\n    at https://r.bing.com/rp/s8ZU1MEe7U8FbDrqIJSB7aDTHHU.br.js:1:270\\n    at https://r.bing.com/rp/s8ZU1MEe7U8FbDrqIJSB7aDTHHU.br.js:1:6051" https://r.bing.com/rp/s8ZU1MEe7U8FbDrqIJSB7aDTHHU.br.js')
+
+================ RESULTS ================
+ 1  PASS Install / manifest / welcome               (14/14)
+ 2  PASS NEVER rules                                (26/26)
+ 3  PASS Minute check / threshold / pause / alarm   (15/15)
+ 4  PASS Context menu handlers                      (17/17)
+ 5  PASS Popup                                      (18/18)
+ 6  PASS Options                                    (26/26)
+ 7  PASS Supporter / no-links / rating              (16/16)
+ 8  PASS Donation banner (links copy)               (23/23)
+ 9  PASS Evil donation links                        (3/3)
+10  PASS Typing protection flow                     (30/30)
+11  PASS Security                                   (23/23)
+12  PASS Real pages                                 (21/21)
+TOTAL: 232 passed, 0 failed, 307 s

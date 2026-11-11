@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Tab Nap – Tab Suspender & Memory Saver"
+  },
+  "extDescription": {
+    "message": "Puts idle tabs to sleep with Chrome's own tab discarding. Frees memory, never loses a tab, and skips tabs with unsaved typing."
+  }
+}

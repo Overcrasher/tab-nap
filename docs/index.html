@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tab Nap – Let idle tabs sleep</title>
+<meta name="description" content="Tab Nap is a free Chrome extension that puts idle tabs to sleep with Chrome&#x27;s own tab discarding. It frees memory, never loses a tab and can skip tabs with unsaved typing. No ads, no tracking, no accounts.">
+<link rel="canonical" href="https://overcrasher.github.io/tab-nap/">
+<style>
+:root{color-scheme:light dark;--bg:#F5F3FF;--surface:#FFFFFF;--line:#DDD8F5;--fg:#1E1B4B;--muted:#55527D;--accent:#312E81;--accent-soft:#E4E1FB;--second:#7A5C00;--second-soft:#FDF1BE;--btn-text:#fff;--shadow:0 1px 2px rgba(49,46,129,.06),0 8px 30px rgba(49,46,129,.09)}
+@media(prefers-color-scheme:dark){:root{--bg:#14123A;--surface:#1C1A4A;--line:#33307A;--fg:#EEEDFF;--muted:#B0AEDB;--accent:#A5B4FC;--accent-soft:#272566;--second:#FDE68A;--second-soft:#3A3358;--btn-text:#1E1B4B;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 30px rgba(0,0,0,.3)}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 ui-rounded,"SF Pro Rounded",-apple-system,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mark{filter:drop-shadow(0 3px 6px rgba(49,46,129,.3))}
+main{max-width:720px;margin:0 auto;padding:40px 16px 24px}
+.hero{background:radial-gradient(120% 100% at 50% 0%,var(--accent-soft),var(--surface) 65%);border:1px solid var(--line);border-radius:24px;padding:40px 24px;text-align:center;box-shadow:var(--shadow)}
+h1{margin:12px 0 4px;font-size:40px;line-height:1.15;letter-spacing:-.02em}
+.tag{margin:0 0 16px;font-size:20px;color:var(--accent);font-weight:600}
+.hero p{max-width:540px;margin:8px auto;color:var(--muted)}
+.cta{margin:24px 0 0}
+.soon{display:inline-block;background:var(--second-soft);color:var(--second);font-weight:700;padding:10px 22px;border-radius:999px;font-size:16px}
+.btn{display:inline-block;background:var(--accent);color:var(--btn-text);font-weight:700;font-size:18px;line-height:1.3;text-decoration:none;padding:14px 28px;border-radius:999px;box-shadow:var(--shadow)}
+.btn:hover{filter:brightness(1.08)}
+.free{margin:8px 0 0;font-size:14px}
+.dev{font-size:14px}
+@media(max-width:480px){h1{font-size:32px}.hero{padding:32px 16px}}
+h2{margin:40px 0 12px;font-size:24px;letter-spacing:-.01em}
+p,li{color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--shadow)}
+.steps strong{display:block;color:var(--fg)}
+.steps li:nth-child(odd){border-left:4px solid var(--accent)}.steps li:nth-child(even){border-left:4px solid var(--second)}
+footer{max-width:720px;margin:0 auto;padding:16px 16px 48px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);text-align:center}
+footer a{margin:0 8px;display:inline-block}
+footer p{margin:12px 0 0;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <svg class="mark" viewBox="0 0 32 32" width="72" height="72" aria-hidden="true"><defs><linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#423E8C"/><stop offset="1" stop-color="#262368"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mk)"/><rect x="4.8" y="17.6" width="22.4" height="9.6" rx="2.2" fill="#BEC8FF"/><rect x="4.8" y="14.7" width="10.2" height="5" rx="1.9" fill="#BEC8FF"/><path d="M19.8 4.9a6.6 6.6 0 1 0 5 10.6 5.6 5.6 0 0 1-5-10.6z" fill="#FDE68A"/></svg>
+    <h1>Tab Nap</h1>
+    <p class="tag">Let idle tabs sleep</p>
+    <p>Tab Nap is a free tab suspender for Chrome. It puts idle tabs to sleep using Chrome&#x27;s own tab discarding, so you get memory back without ever losing a tab.</p>
+    <!-- TODO(store-url): when the Chrome Web Store item is published, delete the "coming soon" line below and
+         uncomment this button, replacing STORE_URL with the real item URL (https://chromewebstore.google.com/detail/tab-nap/<extension-id>).
+    <p class="cta"><a class="btn" href="STORE_URL" target="_blank" rel="noopener">Add to Chrome — it's free</a></p>
+    -->
+    <p class="cta"><span class="soon">Coming soon to the Chrome Web Store</span></p>
+    <p class="free small">Free, no ads, no accounts. Works in Chrome.</p>
+  </header>
+
+  <section>
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><strong>Idle tabs nap</strong>After 30 minutes without use (you can pick 5 to 120), a tab is put to sleep. It keeps its place, title and address.</li>
+      <li><strong>Nothing important is touched</strong>The tab you are looking at, pinned tabs, tabs playing sound, tabs still loading and sites on your whitelist are never napped. With the optional typing protection, tabs where you have typed something are left alone too.</li>
+      <li><strong>Wake any tab with a click</strong>Click a sleeping tab and Chrome reloads it where you left it. The popup lists what is asleep, shows an estimate of the memory freed and how many tab-hours Tab Nap has napped.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Native discarding only</h2>
+    <p>Tab Nap never replaces a tab with a custom &quot;suspended&quot; page. It only asks Chrome to discard the tab, which is how Chrome saves memory itself, so removing Tab Nap can never leave you with broken tabs. The optional typing protection asks for access to sites only if you turn it on, and it only learns a yes/no flag per tab, never what you typed.</p>
+  </section>
+
+  <section>
+    <h2>Private by design</h2>
+    <p>Everything stays on your device. There are no ads, no tracking and no accounts, and the extension makes no network requests. Tab Nap stores settings and counters, and only a yes/no flag per tab for unsaved typing, never field contents. It is open source, so you can check for yourself. Read the full <a href="privacy.html">privacy policy</a>.</p>
+  </section>
+
+  <section>
+    <h2>Install</h2>
+    <p>Tab Nap will be available from the Chrome Web Store. Developers can already <a href="https://github.com/Overcrasher/tab-nap" rel="noopener">load the source unpacked</a> from GitHub.</p>
+  </section>
+
+  <section>
+    <h2>Support</h2>
+    <p>Tab Nap is free. If it helps you, you can optionally make a one-time contribution, or support it monthly, through Stripe. The option appears only at milestones of napped tab-hours, and you can turn it off at any time.</p>
+  </section>
+</main>
+<footer>
+  <a href="privacy.html">Privacy policy</a>
+  <a href="https://github.com/Overcrasher/tab-nap">Source code</a>
+  <a href="https://github.com/Overcrasher/tab-nap/issues">Issues</a>
+  <p>More from the same developer:
+    <a href="https://chromewebstore.google.com/detail/wait-24h/pkgdjohoemjkejcbfbkfobbbjcpdabme" target="_blank" rel="noopener">Wait 24h — a pause before impulse buys</a>
+    <a href="https://chromewebstore.google.com/detail/meeting-meter/ffkniocclnaojfdcoofnjkfnihnpgnlb" target="_blank" rel="noopener">Meeting Meter — see what your meetings cost</a></p>
+  <p>by Quantumbyte Labs — Software built for humans. Sustainable and secure.</p>
+</footer>
+</body>
+</html>

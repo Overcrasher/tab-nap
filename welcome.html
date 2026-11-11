@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Tab Nap</title>
+  <link rel="stylesheet" href="options.css">
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <main>
+    <header class="page-head">
+      <svg class="mark" viewBox="0 0 32 32" width="56" height="56" aria-hidden="true">
+        <defs><linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4338CA"/><stop offset="1" stop-color="#312E81"/></linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="url(#mk)"/>
+        <path d="M19.500 4.500a8 8 0 1 0 6.500 12.200A6.800 6.800 0 0 1 19.500 4.500z" fill="#FDE68A"/>
+        <path d="M5.500 20.500a2 2 0 0 1 2-2h4.200l1.800 1.800h11a2 2 0 0 1 2 2V24a2 2 0 0 1-2 2h-17a2 2 0 0 1-2-2z" fill="#A5B4FC"/>
+      </svg>
+      <div>
+        <h1>Welcome to Tab Nap</h1>
+        <p class="tagline">Idle tabs go to sleep, memory comes back, and no tab is ever lost.</p>
+      </div>
+    </header>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.500 2M9 2.500h6"/></svg>
+        <div><h2>Try it now</h2></div>
+      </div>
+      <ol class="steps">
+        <li><span class="n" aria-hidden="true">1</span><span>Leave a few tabs idle. After 30 minutes they nap and free memory.</span></li>
+        <li><span class="n" aria-hidden="true">2</span><span>Right-click any page and choose "Nap this tab now" to try it right away.</span></li>
+        <li><span class="n" aria-hidden="true">3</span><span>Turn on "Protect tabs with unsaved typing" so a half-written message is never put to sleep.</span></li>
+      </ol>
+      <div class="actions">
+        <button id="protect" class="cta" type="button">Protect tabs with unsaved typing</button>
+      </div>
+      <p id="protect-status" role="status" aria-live="polite" hidden></p>
+      <p class="hint">Chrome will ask for permission to see which tabs you type in. Tab Nap never reads what you type: it only learns that a tab has typing in it.</p>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6l7-3z"/></svg>
+        <div><h2>Good to know</h2></div>
+      </div>
+      <p class="hint know">Tab Nap uses Chrome's own tab discarding. A napping tab keeps its address and wakes up when you click it. Everything stays on your device. No account, no tracking, no ads.</p>
+      <div class="actions">
+        <button id="open-settings" class="cta quiet" type="button">Open settings</button>
+      </div>
+      <p class="hint pin">Pin it: click the puzzle icon in the toolbar, then the pin next to Tab Nap.</p>
+    </section>
+  </main>
+  <script type="module" src="welcome.js"></script>
+</body>
+</html>

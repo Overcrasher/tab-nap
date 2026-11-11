@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tab Nap</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <svg class="mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+      <defs><linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4338CA"/><stop offset="1" stop-color="#312E81"/></linearGradient></defs>
+      <rect width="32" height="32" rx="8" fill="url(#mk)"/>
+      <path d="M19.500 4.500a8 8 0 1 0 6.500 12.200A6.800 6.800 0 0 1 19.500 4.500z" fill="#FDE68A"/>
+      <path d="M5.500 20.500a2 2 0 0 1 2-2h4.200l1.800 1.800h11a2 2 0 0 1 2 2V24a2 2 0 0 1-2 2h-17a2 2 0 0 1-2-2z" fill="#A5B4FC"/>
+    </svg>
+    <h1>Tab Nap</h1>
+    <span id="supporter" class="badge" hidden>Supporter ❤</span>
+    <a id="optionsLink" class="gear" href="options.html" target="_blank" aria-label="Options" title="Options">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.400 15a1.700 1.700 0 0 0 .3 1.900l.1.100a2 2 0 1 1-2.800 2.800l-.1-.1a1.700 1.700 0 0 0-1.900-.3 1.700 1.700 0 0 0-1 1.500V21a2 2 0 1 1-4 0v-.1a1.700 1.700 0 0 0-1.100-1.500 1.700 1.700 0 0 0-1.900.3l-.1.1a2 2 0 1 1-2.800-2.800l.1-.1a1.700 1.700 0 0 0 .3-1.900 1.700 1.700 0 0 0-1.500-1H3a2 2 0 1 1 0-4h.1a1.700 1.700 0 0 0 1.500-1.100 1.700 1.700 0 0 0-.3-1.900l-.1-.1a2 2 0 1 1 2.800-2.800l.1.100a1.700 1.700 0 0 0 1.900.3H9a1.700 1.700 0 0 0 1-1.500V3a2 2 0 1 1 4 0v.1a1.700 1.700 0 0 0 1 1.500 1.700 1.700 0 0 0 1.900-.3l.1-.1a2 2 0 1 1 2.800 2.800l-.1.100a1.700 1.700 0 0 0-.3 1.900V9a1.700 1.700 0 0 0 1.500 1H21a2 2 0 1 1 0 4h-.1a1.700 1.700 0 0 0-1.500 1z"/></svg>
+    </a>
+  </header>
+
+  <section id="banner" class="banner" hidden>
+    <button id="banner-close" class="x" type="button" aria-label="Dismiss">×</button>
+    <div class="banner-head">
+      <svg class="cup" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.500a2.500 2.500 0 0 1 0 5H17"/><path d="M9 3v2M13 3v2"/></svg>
+      <p id="banner-text"></p>
+    </div>
+    <div id="banner-buttons" class="donate-row"></div>
+    <p id="banner-note" class="note"></p>
+    <a id="banner-never" href="#" class="small-link">Don't ask again</a>
+  </section>
+
+  <section id="rating" class="rating" hidden>
+    <p id="rating-text">Enjoying Tab Nap? A quick rating helps other people find it.</p>
+    <div class="rating-row">
+      <button id="rating-rate" class="rate" type="button">Rate it ★</button>
+      <button id="rating-no" type="button">No thanks</button>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="label">Currently napping</div>
+    <div id="count" class="big">0 tabs</div>
+    <div id="memory" class="mem">≈ 0 MB saved (estimated)</div>
+    <button id="share" class="share" type="button" hidden>Share</button>
+  </section>
+
+  <section class="stats">
+    <div class="tile">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.500 2M9 2.500h6"/></svg>
+      <strong id="hours">0</strong><span>tab-hours napped</span>
+    </div>
+    <div class="tile">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/></svg>
+      <strong id="naps">0</strong><span>naps in total</span>
+    </div>
+  </section>
+
+  <section id="listSection">
+    <h2>Sleeping tabs</h2>
+    <ul id="list" class="tabs"></ul>
+    <div id="empty" class="empty">
+      <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" fill="var(--accent-soft)"/>
+        <path d="M36 15a14 14 0 1 0 12 22 12 12 0 0 1-12-22z" fill="none" stroke="var(--accent)" stroke-width="2.200" stroke-linejoin="round"/>
+      </svg>
+      <p>No tabs asleep right now.</p>
+    </div>
+  </section>
+
+  <section class="pause">
+    <label class="switch">
+      <input id="pause" type="checkbox" role="switch">
+      <span class="track" aria-hidden="true"></span>
+      <span class="switch-text">Pause napping</span>
+    </label>
+    <button id="pause1h" class="link-btn" type="button">Pause for 1 hour</button>
+  </section>
+  <p id="pauseLeft" class="note" aria-live="polite"></p>
+
+  <script src="lib/validate.js"></script>
+  <script src="lib/nap.js"></script>
+  <script src="lib/donation.js"></script>
+  <script src="lib/growth.js"></script>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

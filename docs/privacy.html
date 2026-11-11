@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tab Nap – Privacy</title><style>
+:root{color-scheme:light dark;--bg:#F5F3FF;--surface:#FFFFFF;--line:#DDD8F5;--fg:#1E1B4B;--muted:#55527D;--accent:#312E81;--accent-soft:#E4E1FB;--second:#7A5C00;--second-soft:#FDF1BE;--btn-text:#fff;--shadow:0 1px 2px rgba(49,46,129,.06),0 8px 30px rgba(49,46,129,.09)}
+@media(prefers-color-scheme:dark){:root{--bg:#14123A;--surface:#1C1A4A;--line:#33307A;--fg:#EEEDFF;--muted:#B0AEDB;--accent:#A5B4FC;--accent-soft:#272566;--second:#FDE68A;--second-soft:#3A3358;--btn-text:#1E1B4B;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 30px rgba(0,0,0,.3)}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 ui-rounded,"SF Pro Rounded",-apple-system,"Segoe UI Variable","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mark{filter:drop-shadow(0 3px 6px rgba(49,46,129,.3))}
+main{max-width:640px;margin:0 auto;padding:40px 16px 56px}
+.head{display:flex;align-items:center;gap:14px;margin-bottom:20px}h1{font-size:26px;margin:0;letter-spacing:-.01em;line-height:1.2}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:var(--shadow)}
+.lead{font-weight:700;color:var(--accent);margin-top:0;font-size:18px}
+code{background:var(--accent-soft);padding:1px 6px;border-radius:6px;font-size:.92em}
+li{margin:8px 0}ul{padding-left:20px}p{margin:10px 0}
+</style></head><body>
+<main>
+<div class="head"><svg class="mark" viewBox="0 0 32 32" width="44" height="44" aria-hidden="true"><defs><linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#423E8C"/><stop offset="1" stop-color="#262368"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mk)"/><rect x="4.8" y="17.6" width="22.4" height="9.6" rx="2.2" fill="#BEC8FF"/><rect x="4.8" y="14.7" width="10.2" height="5" rx="1.9" fill="#BEC8FF"/><path d="M19.8 4.9a6.6 6.6 0 1 0 5 10.6 5.6 5.6 0 0 1-5-10.6z" fill="#FDE68A"/></svg><h1>Privacy Policy – Tab Nap</h1></div>
+<div class="card">
+<p class="lead">No data leaves your device.</p>
+<p>Tab Nap stores its settings (idle threshold, whitelist, average memory per tab, pause state), lifetime counters (tab-hours napped and total naps) and donation state in your browser&#x27;s local extension storage (<code>chrome.storage.local</code>). Short-lived working state lives in session storage, which Chrome clears when the browser closes.</p>
+<ul>
+<li>No analytics, no tracking, no ads, no accounts.</li>
+<li>No server is contacted by the extension. It makes no network requests of its own.</li>
+<li>To decide which tabs are idle, Tab Nap tracks the last time each tab was active. It reads tab titles and addresses only to show the list of napped tabs in the popup and to match your whitelist. Tab favicons are loaded through the browser&#x27;s internal favicon service, not from the internet by the extension.</li>
+<li>Tabs are put to sleep with Chrome&#x27;s built-in tab discarding only. Tab Nap never rewrites a tab&#x27;s address and never replaces a tab with a page of its own.</li>
+<li>Unsaved typing protection is optional and off until you turn it on. It requires access to sites, which Chrome asks you to approve. When on, a small script in each page notices that something was typed and reports only a yes/no flag (&quot;has unsaved typing&quot;) to the extension. It never reads or sends what you typed, and password fields are ignored entirely. The flag is kept per tab in session storage and cleared when the tab closes or navigates.</li>
+<li>Estimates: &quot;memory saved&quot; is the number of tabs currently napped by Tab Nap times an average size per tab that you can change. It is an estimate, not a measurement.</li>
+<li>Permissions: <code>tabs</code> (tab list, activity and discarding), <code>storage</code>, <code>alarms</code> (the once-a-minute idle check), <code>contextMenus</code> (the right-click &quot;Nap this tab now&quot;, &quot;Never nap this site&quot; and &quot;Nap all other tabs&quot; items), <code>scripting</code> (to register the typing detector only if you turn the protection on) and <code>favicon</code> (to show tab icons in the popup). Access to all sites is optional and requested only for the typing protection.</li>
+<li>Donation links open in a normal browser tab, at your request. Payments are handled entirely by Stripe on their own page; the extension never sees payment details.</li>
+<li>The optional thank-you page only lets the extension mark you as a supporter locally (a flag stored on your device). It is hosted on GitHub Pages, so visiting it contacts GitHub (their privacy policy applies). The extension itself still sends nothing.</li>
+</ul>
+<p>You can erase all data at any time by removing the extension.</p>
+<p>Questions: open an issue at <a href="https://github.com/Overcrasher/tab-nap/issues">https://github.com/Overcrasher/tab-nap/issues</a>.</p>
+<p>Publisher: Quantumbyte Labs.</p>
+</div>
+</main>
+</body></html>
