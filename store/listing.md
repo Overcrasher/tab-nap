@@ -42,13 +42,13 @@ PRIVACY
 • Permissions: tabs, storage, alarms, contextMenus, scripting and favicon. No access to sites unless you turn on typing protection.
 
 OPTIONAL SUPPORT
-Tab Nap is free and built by one developer. If it helps, you can support it with a one-time payment (€3, €5, €10 or an amount you pick) through Stripe, or €2 a month. The ask appears in the popup only at milestones (100, 1,000 and 10,000 tab-hours napped), at most once per milestone and 30 days apart, never right after install. Choose "Don't ask again" and it stops for good. The same links are always in Options. Payments happen on Stripe's page; the extension never sees them.
+Tab Nap is free and built by one developer. If it helps, you can support it with an optional one-time donation through Stripe. The ask appears in the popup only at milestones (100, 1,000 and 10,000 tab-hours napped), at most once per milestone and 30 days apart, never right after install. Choose "Don't ask again" and it stops for good. The same links are always in Options. Payments happen on Stripe's page; the extension never sees them.
 
 The extension's interface is in English.
 
 Open source: https://github.com/Overcrasher/tab-nap
 ```
-Characters: 2161
+Characters: 2121
 
 ---
 
@@ -76,13 +76,13 @@ CONFIDENȚIALITATE
 • Permisiuni: tabs, storage, alarms, contextMenus, scripting și favicon. Fără acces la site-uri decât dacă activezi protecția textului tastat.
 
 SUSȚINERE OPȚIONALĂ
-Tab Nap este gratuită și făcută de un singur dezvoltator. Dacă ți-a fost de folos, o poți susține printr-o plată unică (3 €, 5 €, 10 € sau o sumă aleasă de tine), prin Stripe sau 2 € pe lună. Propunerea apare în fereastra extensiei doar la praguri (100, 1.000 și 10.000 de ore-filă adormite), cel mult o dată pe prag, la minimum 30 de zile distanță, niciodată imediat după instalare. Cu „Don't ask again” se oprește definitiv. Aceleași linkuri sunt mereu în Opțiuni. Plata se face pe pagina Stripe; extensia nu o vede.
+Tab Nap este gratuită și făcută de un singur dezvoltator. Dacă ți-a fost de folos, o poți susține printr-o donație unică, opțională, prin Stripe. Propunerea apare în fereastra extensiei doar la praguri (100, 1.000 și 10.000 de ore-filă adormite), cel mult o dată pe prag, la minimum 30 de zile distanță, niciodată imediat după instalare. Cu „Don't ask again” se oprește definitiv. Aceleași linkuri sunt mereu în Opțiuni. Plata se face pe pagina Stripe; extensia nu o vede.
 
 Interfața extensiei este în limba engleză.
 
 Cod sursă deschis: https://github.com/Overcrasher/tab-nap
 ```
-Characters: 2380
+Characters: 2334
 
 ### Detailed description (de, German)
 
@@ -106,13 +106,13 @@ DATENSCHUTZ
 • Berechtigungen: tabs, storage, alarms, contextMenus, scripting und favicon. Kein Zugriff auf Websites, außer du schaltest den Schutz vor ungespeichertem Text ein.
 
 FREIWILLIGE UNTERSTÜTZUNG
-Tab Nap ist kostenlos und von einem einzelnen Entwickler gebaut. Wenn sie dir hilft, kannst du sie mit einer einmaligen Zahlung unterstützen (3 €, 5 €, 10 € oder ein Betrag deiner Wahl) über Stripe oder 2 € im Monat. Die Bitte erscheint im Popup nur bei Meilensteinen (100, 1.000 und 10.000 Tab-Stunden im Schlaf), höchstens einmal pro Meilenstein und mit mindestens 30 Tagen Abstand, nie direkt nach der Installation. Wähle „Don't ask again“, und sie hört für immer auf. Dieselben Links findest du immer in den Optionen. Die Zahlung läuft auf der Seite von Stripe; die Erweiterung sieht sie nie.
+Tab Nap ist kostenlos und von einem einzelnen Entwickler gebaut. Wenn sie dir hilft, kannst du sie mit einer freiwilligen einmaligen Spende über Stripe unterstützen. Die Bitte erscheint im Popup nur bei Meilensteinen (100, 1.000 und 10.000 Tab-Stunden im Schlaf), höchstens einmal pro Meilenstein und mit mindestens 30 Tagen Abstand, nie direkt nach der Installation. Wähle „Don't ask again“, und sie hört für immer auf. Dieselben Links findest du immer in den Optionen. Die Zahlung läuft auf der Seite von Stripe; die Erweiterung sieht sie nie.
 
 Die Oberfläche der Erweiterung ist auf Englisch.
 
 Open Source: https://github.com/Overcrasher/tab-nap
 ```
-Characters: 2525
+Characters: 2474
 
 ### Detailed description (fr, French)
 
@@ -136,13 +136,13 @@ CONFIDENTIALITÉ
 • Autorisations : tabs, storage, alarms, contextMenus, scripting et favicon. Aucun accès aux sites sauf si vous activez la protection de la saisie.
 
 SOUTIEN FACULTATIF
-Tab Nap est gratuite et conçue par un seul développeur. Si elle vous est utile, vous pouvez la soutenir par un paiement unique (3 €, 5 €, 10 € ou un montant de votre choix) via Stripe ou 2 € par mois. La demande n'apparaît dans la fenêtre de l'extension qu'à certains paliers (100, 1 000 et 10 000 heures-onglet en veille), au plus une fois par palier et à 30 jours d'intervalle, jamais juste après l'installation. Choisissez « Don't ask again » et elle s'arrête définitivement. Les mêmes liens sont toujours dans les Options. Le paiement se fait sur la page de Stripe ; l'extension ne le voit jamais.
+Tab Nap est gratuite et conçue par un seul développeur. Si elle vous est utile, vous pouvez la soutenir par un don unique et facultatif via Stripe. La demande n'apparaît dans la fenêtre de l'extension qu'à certains paliers (100, 1 000 et 10 000 heures-onglet en veille), au plus une fois par palier et à 30 jours d'intervalle, jamais juste après l'installation. Choisissez « Don't ask again » et elle s'arrête définitivement. Les mêmes liens sont toujours dans les Options. Le paiement se fait sur la page de Stripe ; l'extension ne le voit jamais.
 
 L'interface de l'extension est en anglais.
 
 Code source ouvert: https://github.com/Overcrasher/tab-nap
 ```
-Characters: 2547
+Characters: 2494
 
 ### Detailed description (es, Spanish)
 
@@ -166,13 +166,13 @@ PRIVACIDAD
 • Permisos: tabs, storage, alarms, contextMenus, scripting y favicon. Sin acceso a sitios salvo que actives la protección del texto sin guardar.
 
 APOYO OPCIONAL
-Tab Nap es gratuita y la ha creado un solo desarrollador. Si te resulta útil, puedes apoyarla con un pago único (3 €, 5 €, 10 € o un importe a tu elección) a través de Stripe o 2 € al mes. La petición aparece en la ventana de la extensión solo en ciertos hitos (100, 1.000 y 10.000 horas-pestaña dormidas), como máximo una vez por hito y con 30 días de separación, nunca justo después de instalar. Elige «Don't ask again» y se detiene para siempre. Los mismos enlaces están siempre en Opciones. El pago se hace en la página de Stripe; la extensión nunca lo ve.
+Tab Nap es gratuita y la ha creado un solo desarrollador. Si te resulta útil, puedes apoyarla con una donación única y opcional a través de Stripe. La petición aparece en la ventana de la extensión solo en ciertos hitos (100, 1.000 y 10.000 horas-pestaña dormidas), como máximo una vez por hito y con 30 días de separación, nunca justo después de instalar. Elige «Don't ask again» y se detiene para siempre. Los mismos enlaces están siempre en Opciones. El pago se hace en la página de Stripe; la extensión nunca lo ve.
 
 La interfaz de la extensión está en inglés.
 
 Código abierto: https://github.com/Overcrasher/tab-nap
 ```
-Characters: 2435
+Characters: 2394
 
 ---
 
@@ -275,7 +275,7 @@ Quick test (about 3 minutes):
 4. Options: idle threshold (5/15/30/60/120 min; default 30), pinned/audible protection, average MB per tab, whitelist, pause, and the switch "Protect tabs with unsaved typing". Turning the switch on shows Chrome's permission prompt (optional_host_permissions <all_urls>); it is off by default, so a fresh install requests no site access. When on, a tab where text was typed in a field is skipped by the idle check (only a yes/no flag is stored, never contents).
 5. The idle check runs once a minute (alarm). To see it quickly, set the threshold to 5 minutes and leave a tab in the background.
 
-Optional support: free extension. The support banner appears in the popup only at 100, 1,000 and 10,000 tab-hours napped, at most once per milestone, 30 days apart. The same Stripe links (and a small "support monthly" link) are always in Options. Payments happen on Stripe's page.
+Optional support: free extension. The support banner appears in the popup only at 100, 1,000 and 10,000 tab-hours napped, at most once per milestone, 30 days apart. The same Stripe link is always in Options. Payments happen on Stripe's page.
 
 Permissions: tabs, storage, alarms, contextMenus, scripting, favicon; optional access to all sites only for the typing protection. No remote code, no network requests by the extension. Source: https://github.com/Overcrasher/tab-nap
 ```
