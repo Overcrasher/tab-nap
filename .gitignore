@@ -5,3 +5,5 @@ dist/
 tests/e2e/shots/
 tests/e2e/profile*/
 tests/e2e/ext-*/
+tools/store_raw/
+tests/e2e/*.err

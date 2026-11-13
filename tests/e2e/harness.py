@@ -793,11 +793,24 @@ def g12():
         check("real %s restored with URL intact" % u, ok and (tab(t["id"]) or {}).get("url", "").endswith(u), (tab(t["id"]) or {}).get("url"))
     clean()
 
+def g13():  # REAL build config (single EUR 3 link): banner + options show exactly one button
+    reset(extra={"tabHours": 100}); clean()
+    tid, sid = open_popup(); b = banner_info(sid)
+    check("real build: banner shown at 100 tab-hours", not b["hidden"], b)
+    check("real build: exactly one button '€3' (no pick-your-own, no monthly), no note", [x["t"] for x in b["btns"]] == ["€3"] and b["note"] == "", b)
+    shot(sid, "popup-banner-single-link")
+    TABS_SEEN.clear(); px(sid, "document.querySelector('#banner-buttons button, #banner-buttons a').click()"); time.sleep(1.0)
+    check("real build: click opens the real donate.stripe.com link", any(u == "https://donate.stripe.com/aFa14o3tB3U00Fc70Gfbq0a" for u in TABS_SEEN), TABS_SEEN)
+    close_tab(tid)
+    reset(extra={"tabHours": 5}); tid, sid = ext_page("options.html", w=900, h=1500); time.sleep(1.0); st = opt_state(sid)
+    check("real build options: only '€3', no monthly", st["donateBtns"] == ["€3"] and st["donateNote"] == "", (st["donateBtns"], st["donateNote"]))
+    shot(sid, "options-single-link", full=True); close_tab(tid)
+
 NAMES = {1: "Install / manifest / welcome", 2: "NEVER rules", 3: "Minute check / threshold / pause / alarm", 4: "Context menu handlers", 5: "Popup",
          6: "Options", 7: "Supporter / no-links / rating", 8: "Donation banner (links copy)", 9: "Evil donation links", 10: "Typing protection flow",
-         11: "Security", 12: "Real pages"}
-TESTS = [(1, "main", g1), (2, "main", g2), (3, "main", g3), (4, "main", g4), (5, "main", g5), (6, "main", g6), (7, "main", g7),
-         (8, "links", g8), (9, "evil", g9), (10, "hostperm", g10), (11, "hostperm", g11), (12, "hostperm", g12)]
+         11: "Security", 12: "Real pages", 13: "Real build: single EUR 3 link"}
+TESTS = [(1, "main", g1), (2, "main", g2), (3, "main", g3), (4, "main", g4), (5, "main", g5), (6, "nolinks", g6), (7, "nolinks", g7),
+         (8, "links", g8), (9, "evil", g9), (10, "hostperm", g10), (11, "hostperm", g11), (12, "hostperm", g12), (13, "main", g13)]
 
 def run_phase(phase, ext_path):
     todo = [(n, f) for n, p, f in TESTS if p == phase and (not ONLY or n in ONLY)]
@@ -822,6 +835,7 @@ def main():
     need = lambda p: any(pp == p and (not ONLY or n in ONLY) for n, pp, _ in TESTS)
     try:
         run_phase("main", EXT)
+        if need("nolinks"): run_phase("nolinks", copy_ext("ext-nolinks", '{ small: "", medium: "", large: "", custom: "", monthly: "" }'))
         if need("links"): run_phase("links", copy_ext("ext-links", LINKS))
         if need("evil"): run_phase("evil", copy_ext("ext-evil", '{ small: "https://evil.example/x", medium: "https://buy.stripe.com.evil.example/x", large: "http://donate.stripe.com/x", custom: "https://evil.example/custom", monthly: "https://evil.example/m" }'))
         if need("hostperm"): run_phase("hostperm", copy_ext("ext-hostperm", None, host_perm=True))

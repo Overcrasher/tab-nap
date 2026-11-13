@@ -72,7 +72,7 @@ Asks happen only at lifetime milestones of 100, 1,000 and 10,000 tab-hours, as a
 ```
 /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc tests/run.js   # unit tests (pure logic)
 python3 tests/e2e/harness.py        # Chrome 157 end-to-end over CDP; ONLY=2,5 selects groups; needs network for the real-page group
-python3 tools/check_release.py      # add --release to require the four EUR Stripe links
+python3 tools/check_release.py      # add --release to require at least one EUR Stripe link
 ```
 
 The E2E harness drives real Chrome headless with real https tabs. It cannot drive the native context-menu UI or the permission prompt headless, so menu handlers are invoked directly and the permission request is stubbed on a test copy that already holds `<all_urls>`; the rest of the flow is real code.

@@ -3,7 +3,8 @@
 // large = EUR 10, custom = EUR 1 product with adjustable quantity ("Pick your own amount"),
 // monthly = EUR 2 per month subscription (shown as a small text link).
 // An empty string hides that button; if no link is set at all the popup never shows the ask.
-export const DONATE_LINKS = { small: "", medium: "", large: "", custom: "", monthly: "" };
+// First release: only the EUR 3 link is live; medium/large/custom/monthly will be added in a later release.
+export const DONATE_LINKS = { small: "https://donate.stripe.com/aFa14o3tB3U00Fc70Gfbq0a", medium: "", large: "", custom: "", monthly: "" };
 
 // Optional USD set (same links created in USD). Used only if small, medium AND large are all non-empty
 // AND the browser language is a US locale (region US or PR, e.g. en-US, es-US).
